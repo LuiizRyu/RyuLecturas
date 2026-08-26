@@ -11,7 +11,13 @@ function filterBooks() {
   const cards = document.querySelectorAll('.card');
 
   cards.forEach(card => {
-    // Normaliza todo el texto de la tarjeta quitando acentos y convirtiéndolo a minúsculas
+    // Si la tarjeta tiene la clase 'card-promo', siempre se mantiene visible
+    if (card.classList.contains('card-promo')) {
+      card.style.display = '';
+      return;
+    }
+
+    // Normaliza el texto de la tarjeta de libro para la comparación
     const text = card.textContent
       .toLowerCase()
       .normalize('NFD')
