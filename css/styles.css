@@ -276,3 +276,37 @@ footer span {
     background-color: #FF2800;
     transform: scale(1.02);
 }
+
+/* --- Promo --- */
+.card-promo {
+  padding: 10px;
+  background-color: #ffffff; /* Fondo oscuro ajustado al tono de la imagen */
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.promo-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.promo-btn {
+  display: block;
+  text-align: center;
+  background-color: var(--accent);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.promo-btn:hover {
+  background-color: #1d4ed8;
+}
