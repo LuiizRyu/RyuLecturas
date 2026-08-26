@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Audio-Libros</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <img src="imagenes/logo-ryu.png" class="main-title-logo" alt="Logo">
+    <h1>Catálogo de Audiolibros</h1>
+    <div class="search-container">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar autor, saga o libro..." onkeyup="filterBooks()">
+    </div>
+  </header>
+
+  <main>
+    <div class="grid-catalog" id="catalogGrid">
+
+      <!-- Agatha Christie -->
+      <article class="card">
+        <div>
+          <span class="card-author">Agatha Christie</span>
+          <h2 class="card-title">El misterio de Cornish</h2>
+          <span class="badge">Novela Independiente</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Misterio y novela policiaca clásica.</p>
+        </details>
+      </article>
+
+      <!-- Bram Stoker -->
+      <article class="card">
+        <div>
+          <span class="card-author">Bram Stoker</span>
+          <h2 class="card-title">Drácula</h2>
+          <span class="badge">Novela Independiente</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Clásico del terror gótico escrito en formato epistolar.</p>
+        </details>
+      </article>
+
+      <!-- C. S. Lewis -->
+      <article class="card">
+        <div>
+          <span class="card-author">C. S. Lewis</span>
+          <h2 class="card-title">Las crónicas de Narnia</h2>
+          <span class="badge">Saga Fantástica (7 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>El sobrino del mago</li>
+            <li>El león, la bruja y el armario</li>
+            <li>El caballo y su niño</li>
+            <li>El príncipe Caspian</li>
+            <li>La travesía del Viajero del Alba</li>
+            <li>La silla de plata</li>
+            <li>La última batalla</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Carlos Ruiz Zafón -->
+      <article class="card">
+        <div>
+          <span class="card-author">Carlos Ruiz Zafón</span>
+          <h2 class="card-title">El Cementerio de los Libros Olvidados</h2>
+          <span class="badge">Tetralogía</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>La sombra del viento</li>
+            <li>El juego del ángel</li>
+            <li>El prisionero del cielo</li>
+            <li>El laberinto de los espíritus</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Dante Alighieri -->
+      <article class="card">
+        <div>
+          <span class="card-author">Dante Alighieri</span>
+          <h2 class="card-title">Divina comedia</h2>
+          <span class="badge">Obra Clásica</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Poema épico fundamental de la literatura universal.</p>
+        </details>
+      </article>
+
+      <!-- Elle Kennedy -->
+      <article class="card">
+        <div>
+          <span class="card-author">Elle Kennedy</span>
+          <h2 class="card-title">Saga Kiss Me (Off-Campus)</h2>
+          <span class="badge">Saga Romántica (5 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Prohibido enamorarse (The Deal)</li>
+            <li>El error (The Mistake)</li>
+            <li>El juego (The Score)</li>
+            <li>El objetivo (The Goal)</li>
+            <li>El legado (The Legacy)</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Gabriel García Márquez -->
+      <article class="card">
+        <div>
+          <span class="card-author">Gabriel García Márquez</span>
+          <h2 class="card-title">Obras Seleccionadas</h2>
+          <span class="badge">Realismo Mágico</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Cien años de soledad</li>
+            <li>Del amor y otros demonios</li>
+            <li>El amor en los tiempos del cólera</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- George R. R. Martin -->
+      <article class="card">
+        <div>
+          <span class="card-author">George R. R. Martin</span>
+          <h2 class="card-title">Canción de hielo y fuego</h2>
+          <span class="badge">Saga Fantástica</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Juego de tronos</li>
+            <li>Choque de reyes</li>
+            <li>Tormenta de espadas</li>
+            <li>Festín de cuervos</li>
+            <li>Danza de dragones</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- H. G. Wells -->
+      <article class="card">
+        <div>
+          <span class="card-author">H. G. Wells</span>
+          <h2 class="card-title">Obras de Ciencia Ficción</h2>
+          <span class="badge">Clásicos CF</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>La guerra de los mundos</li>
+            <li>La máquina del tiempo</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Isaac Asimov -->
+      <article class="card">
+        <div>
+          <span class="card-author">Isaac Asimov</span>
+          <h2 class="card-title">Los propios dioses</h2>
+          <span class="badge">Ciencia Ficción</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Novela ganadora de los premios Hugo, Nebula y Locus.</p>
+        </details>
+      </article>
+
+      <!-- Isabel Allende -->
+      <article class="card">
+        <div>
+          <span class="card-author">Isabel Allende</span>
+          <h2 class="card-title">Obras Seleccionadas</h2>
+          <span class="badge">Narrativa</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>De amor y de sombra</li>
+            <li>La suma de los días</li>
+            <li>Largo pétalo de mar</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- J. K. Rowling -->
+      <article class="card">
+        <div>
+          <span class="card-author">J. K. Rowling</span>
+          <h2 class="card-title">Harry Potter</h2>
+          <span class="badge">Saga Completa (7 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Harry Potter y la piedra filosofal</li>
+            <li>Harry Potter y la cámara secreta</li>
+            <li>Harry Potter y el prisionero de Azkaban</li>
+            <li>Harry Potter y el cáliz de fuego</li>
+            <li>Harry Potter y la orden del fénix</li>
+            <li>Harry Potter y el misterio del príncipe</li>
+            <li>Harry Potter y las reliquias de la muerte</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- J. R. R. Tolkien -->
+      <article class="card">
+        <div>
+          <span class="card-author">J. R. R. Tolkien</span>
+          <h2 class="card-title">Fantasía Épica</h2>
+          <span class="badge">Obras Fundamentales</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>El señor de los anillos</li>
+            <li>El Silmarillion</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Jojo Moyes -->
+      <article class="card">
+        <div>
+          <span class="card-author">Jojo Moyes</span>
+          <h2 class="card-title">Sigo siendo yo</h2>
+          <span class="badge">Novela Romántica</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Continuación de la serie Me Before You.</p>
+        </details>
+      </article>
+
+      <!-- Julio Cortázar -->
+      <article class="card">
+        <div>
+          <span class="card-author">Julio Cortázar</span>
+          <h2 class="card-title">Historias de cronopios y de famas</h2>
+          <span class="badge">Antología de Relatos</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Cuentos breves y surrealistas.</p>
+        </details>
+      </article>
+
+      <!-- Julio Verne -->
+      <article class="card">
+        <div>
+          <span class="card-author">Julio Verne</span>
+          <h2 class="card-title">Obras Destacadas</h2>
+          <span class="badge">Aventura y Ciencia Ficción</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>De la Tierra a la Luna</li>
+            <li>La isla misteriosa</li>
+            <li>La vuelta al mundo en ochenta días</li>
+            <li>Veinte mil leguas de viaje submarino</li>
+            <li>Viaje al centro de la Tierra</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Kathryn Stockett -->
+      <article class="card">
+        <div>
+          <span class="card-author">Kathryn Stockett</span>
+          <h2 class="card-title">Criadas y señoras</h2>
+          <span class="badge">Ficción Histórica</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Novela sobre el racismo en Misisipi en los años 60.</p>
+        </details>
+      </article>
+
+      <!-- Mario Vargas Llosa -->
+      <article class="card">
+        <div>
+          <span class="card-author">Mario Vargas Llosa</span>
+          <h2 class="card-title">La ciudad y los perros</h2>
+          <span class="badge">Novela Independiente</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Obra cumbre del Boom Latinoamericano.</p>
+        </details>
+      </article>
+
+      <!-- Mary Shelley -->
+      <article class="card">
+        <div>
+          <span class="card-author">Mary Shelley</span>
+          <h2 class="card-title">Frankenstein</h2>
+          <span class="badge">Clásico de Terror</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>La historia del moderno Prometeo.</p>
+        </details>
+      </article>
+
+      <!-- Neil Gaiman -->
+      <article class="card">
+        <div>
+          <span class="card-author">Neil Gaiman</span>
+          <h2 class="card-title">El libro del cementerio</h2>
+          <span class="badge">Fantasía Juvenil</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Novela de aprendizaje en un entorno macabro y fantástico.</p>
+        </details>
+      </article>
+
+      <!-- Patrick Ness -->
+      <article class="card">
+        <div>
+          <span class="card-author">Patrick Ness</span>
+          <h2 class="card-title">Un monstruo viene a verme</h2>
+          <span class="badge">Fantasía / Drama</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Una historia conmovedora sobre la pérdida y la aceptación.</p>
+        </details>
+      </article>
+
+      <!-- Patrick Süskind -->
+      <article class="card">
+        <div>
+          <span class="card-author">Patrick Süskind</span>
+          <h2 class="card-title">El perfume</h2>
+          <span class="badge">Novela Histórica / Suspense</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Historia de un asesino en el siglo XVIII.</p>
+        </details>
+      </article>
+
+      <!-- Paz Castelló -->
+      <article class="card">
+        <div>
+          <span class="card-author">Paz Castelló</span>
+          <h2 class="card-title">La muerte del 9</h2>
+          <span class="badge">Thriller / Intriga</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Novela de misterio y suspenso contemporáneo.</p>
+        </details>
+      </article>
+
+      <!-- Philip Pullman -->
+      <article class="card">
+        <div>
+          <span class="card-author">Philip Pullman</span>
+          <h2 class="card-title">La materia oscura</h2>
+          <span class="badge">Saga Fantástica</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>La brújula dorada</li>
+            <li>El catalejo lacado</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Richard Matheson -->
+      <article class="card">
+        <div>
+          <span class="card-author">Richard Matheson</span>
+          <h2 class="card-title">Soy leyenda</h2>
+          <span class="badge">Ciencia Ficción / Terror</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Novela postapocalíptica de vampirismo moderno.</p>
+        </details>
+      </article>
+
+      <!-- Robert Louis Stevenson -->
+      <article class="card">
+        <div>
+          <span class="card-author">Robert Louis Stevenson</span>
+          <h2 class="card-title">El extraño caso del Dr. Jekyll y Mr. Hyde</h2>
+          <span class="badge">Novela Corta Clásica</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Clásico victoriano sobre la dualidad humana.</p>
+        </details>
+      </article>
+
+      <!-- Stephen King: La Torre Oscura -->
+      <article class="card">
+        <div>
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">La Torre Oscura</h2>
+          <span class="badge">Saga Principal (8 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>La hierba del diablo (El pistolero)</li>
+            <li>La llegada de los tres (La invocación)</li>
+            <li>Las tierras baldías</li>
+            <li>La bola de cristal (Mago y cristal)</li>
+            <li>El viento por la cerradura</li>
+            <li>Lobos del Calla</li>
+            <li>Canción de Susannah</li>
+            <li>La Torre Oscura</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: El Resplandor -->
+      <article class="card">
+        <div>
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Saga El Resplandor</h2>
+          <span class="badge">Duología</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>El resplandor</li>
+            <li>Doctor sueño</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: Bill Hodges -->
+      <article class="card">
+        <div>
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Trilogía Bill Hodges</h2>
+          <span class="badge">Trilogía Policial</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Mr. Mercedes</li>
+            <li>Quien pierde paga</li>
+            <li>Fin de guardia</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: Las Cuatro Estaciones -->
+      <article class="card">
+        <div>
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Las Cuatro Estaciones</h2>
+          <span class="badge">Novelas Cortas</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Rita Hayworth y la redención de Shawshank</li>
+            <li>Alumno aventajado</li>
+            <li>El cuerpo</li>
+            <li>El método de respiración</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: Obras independientes -->
+      <article class="card">
+        <div>
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Obras Independientes y Antologías</h2>
+          <span class="badge">Selección de Títulos</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Carrie</li>
+            <li>Cuento de hadas</li>
+            <li>Dolores Claiborne</li>
+            <li>El bazar de los malos sueños</li>
+            <li>El instituto</li>
+            <li>El misterio del gusano</li>
+            <li>El visitante</li>
+            <li>La chica que amaba a Tom Gordon</li>
+            <li>La historia de Lisey</li>
+            <li>La milla verde</li>
+            <li>La zona muerta</li>
+            <li>Misery</li>
+            <li>Revival</li>
+            <li>Todo es eventual</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Suzanne Collins -->
+      <article class="card">
+        <div>
+          <span class="card-author">Suzanne Collins</span>
+          <h2 class="card-title">Los juegos del hambre</h2>
+          <span class="badge">Saga Distópica (5 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Los juegos del hambre</li>
+            <li>En llamas</li>
+            <li>Sinsajo</li>
+            <li>Balada de pájaros cantores y serpientes</li>
+            <li>Amanecer en la cosecha</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- William Shakespeare -->
+      <article class="card">
+        <div>
+          <span class="card-author">William Shakespeare</span>
+          <h2 class="card-title">Hamlet</h2>
+          <span class="badge">Obra Teatral Clásica</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Tragedia clásica de la literatura universal.</p>
+        </details>
+      </article>
+
+      <!-- Ana Frank -->
+      <article class="card">
+        <div>
+          <span class="card-author">Ana Frank</span>
+          <h2 class="card-title">El diario de Ana Frank</h2>
+          <span class="badge">Autobiografía</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver detalles</summary>
+          <p>Testimonio y documento histórico esencial.</p>
+        </details>
+      </article>
+
+    </div>
+  </main>
+  
+	<!-- BANNER FLOTANTE (SEMÁNTICO) -->
+	<aside id="promoBanner" class="floating-banner" aria-label="Anuncio promocional">
+		<a href="https://wa.me/+5215586732808?text=Hola,%20me%20interesa%20obtener%20un%20audiolibro" target="_blank" rel="noopener noreferrer" class="floating-banner-btn">Quiero un libro</a>
+	</aside>
+
+  <footer>
+    <p>Desarrollado por <a href="https://www.facebook.com/share/192qzMpbjN/" target="_blank" rel="noopener noreferrer" class="fb-link">Ryu Tecnología</a> &copy; 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
