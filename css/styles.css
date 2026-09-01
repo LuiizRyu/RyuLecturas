@@ -372,3 +372,27 @@ footer span {
   height: 14px;
   fill: currentColor;
 }
+
+/* Fuerza la alineación horizontal en el primer elemento */
+.book-item-with-audio {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Evita que el contenedor de audio ocupe un bloque completo */
+.sample-audio-container {
+  display: inline-flex !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ajuste del botón para alinearlo con el texto */
+.sample-btn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px !important;
+  font-size: 0.85rem !important;
+}
