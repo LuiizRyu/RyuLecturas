@@ -526,24 +526,37 @@
         </details>
       </article>
 
-      <!-- Suzanne Collins -->
-      <article class="card">
-        <div>
-          <span class="card-author">Suzanne Collins</span>
-          <h2 class="card-title">Los juegos del hambre</h2>
-          <span class="badge">Saga Distópica (5 Libros)</span>
-        </div>
-        <details class="card-details">
-          <summary>Ver lista de libros</summary>
-          <ul>
-            <li>Los juegos del hambre</li>
-            <li>En llamas</li>
-            <li>Sinsajo</li>
-            <li>Balada de pájaros cantores y serpientes</li>
-            <li>Amanecer en la cosecha</li>
-          </ul>
-        </details>
-      </article>
+		<!-- Suzanne Collins -->
+		<article class="card">
+		  <div>
+			<span class="card-author">Suzanne Collins</span>
+			<h2 class="card-title">Los juegos del hambre</h2>
+			<span class="badge">Saga Distópica (5 Libros)</span>
+		  </div>
+		  <details class="card-details">
+			<summary>Ver lista de libros</summary>
+			<ul>
+			  <li>Los juegos del hambre</li>
+			  <!-- Botón de Muestra estilo Storytel -->
+			<div class="sample-audio-container">
+			  <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+				<svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+				  <path d="M8 5v14l11-7z"/>
+				</svg>
+				<span class="btn-text">Avance</span>
+			  </button>
+			  
+			  <audio class="audio-element" preload="none">
+				<source src="audio/JH1.mp3" type="audio/mpeg">
+			  </audio>
+			</div>
+			  <li>En llamas</li>
+			  <li>Sinsajo</li>
+			  <li>Balada de pájaros cantores y serpientes</li>
+			  <li>Amanecer en la cosecha</li>
+			</ul>
+		  </details>
+		</article>
 
       <!-- William Shakespeare -->
       <article class="card">
