@@ -310,3 +310,65 @@ footer span {
 .promo-btn:hover {
   background-color: #1d4ed8;
 }
+
+/* Contenedor del reproductor de audiolibro */
+.audio-player-container {
+  margin: 10px 0 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Etiqueta indicadora arriba del reproductor */
+.audio-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Ajuste del reproductor nativo HTML5 */
+.audio-preview {
+  width: 100%;
+  height: 36px;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* Contenedor principal del avance */
+.sample-audio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0;
+}
+
+/* Botón estilo Storytel */
+.sample-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  color: #101010;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.sample-btn:hover {
+  opacity: 0.75;
+}
+
+.sample-btn:active {
+  transform: scale(0.98);
+}
+
+/* Ícono de triangulito (Play) */
+.play-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
