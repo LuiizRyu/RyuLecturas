@@ -9,7 +9,6 @@ Un catálogo web interactivo y responsivo diseñado para explorar un catálogo d
 - **Vista tipo Grid y Responsiva:** Adaptada para dispositivos móviles y escritorio.
 - **Portadas Unificadas:** Renderizadas en proporción `2:3` uniforme (`aspect-ratio`).
 - **Reproductor de Muestra:** Escucha avances en audio sin interrupciones cruzadas (reproducción global).
-- **Llamado a la Acción (CTA) dinámico:** Enlace directo a WhatsApp post-reproducción para solicitar el contenido completo.
 - **Buscador en Tiempo Real:** Filtra instantáneamente por autor, título o saga.
 - **Listas desplegables interactiva:** Uso de elementos `<details>` para organizar colecciones y sagas extensas.
 
