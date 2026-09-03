@@ -1,34 +1,41 @@
-function filterBooks() {
-  const input = document.getElementById('searchInput');
-  
-  // Normaliza el término de búsqueda quitando acentos y convirtiéndolo a minúsculas
-  const filter = input.value
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .trim();
+function removeAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
+function filterBooks() {
+  const rawInput = document.getElementById('searchInput').value.trim();
   const cards = document.querySelectorAll('.card');
+  const noResultsEl = document.getElementById('noResults');
+
+  if (rawInput === '') {
+    cards.forEach(card => card.style.display = '');
+    if (noResultsEl) noResultsEl.style.display = 'none';
+    return;
+  }
+
+  const cleanInput = removeAccents(rawInput);
+  const escapedInput = cleanInput.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`\\b${escapedInput}\\b`, 'i');
+
+  let matches = 0;
 
   cards.forEach(card => {
-    // Si la tarjeta tiene la clase 'card-promo', siempre se mantiene visible
-    if (card.classList.contains('card-promo')) {
-      card.style.display = '';
-      return;
-    }
+    if (card.classList.contains('card-promo')) return;
 
-    // Normaliza el texto de la tarjeta de libro para la comparación
-    const text = card.textContent
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
+    const cardTextNormalized = removeAccents(card.textContent);
 
-    if (text.includes(filter)) {
+    if (regex.test(cardTextNormalized)) {
       card.style.display = '';
+      matches++;
     } else {
       card.style.display = 'none';
     }
   });
+
+  // Mostrar el mensaje si no hubo ninguna coincidencia
+  if (noResultsEl) {
+    noResultsEl.style.display = matches === 0 ? 'block' : 'none';
+  }
 }
 
 // Detener otros audios cuando uno comienza a reproducirse
