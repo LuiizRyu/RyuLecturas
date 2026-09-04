@@ -21,26 +21,29 @@
 <body>
 
 <header>
-  <div class="header-right-group">
-    <img src="imagenes/logo-ryu.png" class="main-title-logo" alt="Logo">
+  <!-- Contenedor Izquierdo (Logo + Redes) -->
+  <div class="header-left">
+    <a href="#" class="logo-link">
+      <img src="imagenes/logo-ryu.png" class="main-title-logo" alt="Logo RYU">
+    </a>
+
     <div class="social-icons">
-      <!-- Icono de WhatsApp -->
       <a href="https://wa.me/5215586732808" target="_blank" title="WhatsApp" class="social-icon">
         <img src="imagenes/icono-whatsapp.png" alt="WhatsApp">
       </a>
-      <!-- Icono de Facebook -->
       <a href="https://www.facebook.com/share/192qzMpbjN/" target="_blank" title="Facebook" class="social-icon">
         <img src="imagenes/icono-facebook.png" alt="Facebook">
       </a>
-      <!-- Icono de otra página -->
       <a href="https://luiizryu.github.io/RyuTecnologia/index.html" target="_blank" title="Ryu TV" class="social-icon">
         <img src="imagenes/white-audio-book.png" alt="Ryu TV">
       </a>
     </div>
   </div>
 
-  <!-- Contenedor de navegación y accesos rápidos -->
+  <!-- Título central -->
   <h1>Catálogo de Audiolibros</h1>
+
+  <!-- Buscador -->
   <div class="search-container">
     <input type="text" id="searchInput" class="search-input" placeholder="Buscar autor, saga o libro..." onkeyup="filterBooks()">
   </div>
