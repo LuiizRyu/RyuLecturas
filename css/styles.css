@@ -25,43 +25,113 @@ body {
   line-height: 1.5;
 }
 
+/* --- Estilos MÓVIL (Por defecto) --- */
 header {
-  width: 100%;                  /* Ocupa todo el ancho de la pantalla */
-  box-sizing: border-box;       /* Evita que el padding genere scroll horizontal */
+  width: 100%;
+  box-sizing: border-box;
   background-color: var(--primary);
-  padding: 12px 24px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr; /* Tres secciones: Izquierda, Centro, Derecha */
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 10px;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
 .main-title-logo {
-  max-height: 45px;
+  max-height: 38px;
   width: auto;
   object-fit: contain;
-  display: block; /* Elimina el espacio baseline de imágenes */
-  margin: 0; /* Asegura que no tenga márgenes aplicados */
-  /* Ajuste visual para compensar el resplandor de la sombra */
-  transform: translateY(-2px); 
+  display: block;
+  margin: 0 auto;
+  transform: translateY(-2px);
   filter: drop-shadow(5px 5px 10px rgba(3, 44, 87, 1));
 }
 
 header h1 {
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 0;
   font-weight: 700;
   letter-spacing: -0.5px;
-  text-align: center; /* Asegura el centrado del texto */
-  white-space: nowrap; /* Evita que el título se rompa en dos líneas */
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.social-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover img {
+  transform: scale(1.1);
 }
 
 .search-container {
-  width: 350px;
-  justify-self: end; /* Alinea el buscador totalmente a la derecha */
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Estilos ESCRITORIO (768px o más) --- */
+@media (min-width: 768px) {
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Tres bloques principales */
+    padding: 12px 24px;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header-left {
+    flex-direction: row; /* Alinea logo y redes en horizontal */
+    justify-content: flex-start;
+    gap: 20px;
+    width: auto;
+  }
+
+  .main-title-logo {
+    max-height: 45px;
+    margin: 0;
+  }
+
+  .social-icons {
+    margin-left: 0; /* Elimina cualquier margen manual previo */
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .search-container {
+    width: 320px;
+    justify-self: end;
+  }
 }
 
 .search-input {
