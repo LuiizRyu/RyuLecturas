@@ -20,13 +20,31 @@
 </head>
 <body>
 
-  <header>
+<header>
+  <div class="header-right-group">
     <img src="imagenes/logo-ryu.png" class="main-title-logo" alt="Logo">
-    <h1>Catálogo de Audiolibros</h1>
-    <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Buscar autor, saga o libro..." onkeyup="filterBooks()">
+    <div class="social-icons">
+      <!-- Icono de WhatsApp -->
+      <a href="https://wa.me/5215586732808" target="_blank" title="WhatsApp" class="social-icon">
+        <img src="imagenes/icono-whatsapp.png" alt="WhatsApp">
+      </a>
+      <!-- Icono de Facebook -->
+      <a href="https://www.facebook.com/share/192qzMpbjN/" target="_blank" title="Facebook" class="social-icon">
+        <img src="imagenes/icono-facebook.png" alt="Facebook">
+      </a>
+      <!-- Icono de otra página -->
+      <a href="URL_DE_TU_PAGINA" target="_blank" title="Ryu TV" class="social-icon">
+        <img src="imagenes/white-audio-book.png" alt="Ryu TV">
+      </a>
     </div>
-  </header>
+  </div>
+
+  <!-- Contenedor de navegación y accesos rápidos -->
+  <h1>Catálogo de Audiolibros</h1>
+  <div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="Buscar autor, saga o libro..." onkeyup="filterBooks()">
+  </div>
+</header>
 
   <main>
     <div class="grid-catalog" id="catalogGrid">
@@ -254,7 +272,7 @@
       <!-- Gabriel García Márquez -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/ciensoledad.jpg" alt="Portada Cien Soledad" class="book-cover">
+		 <img src="imagenes/portadas/ciensoledad.jpg" alt="Portada Cien años de soledad" class="book-cover">
           <span class="card-author">Gabriel García Márquez</span>
           <h2 class="card-title">Obras Seleccionadas</h2>
           <span class="badge">Realismo Mágico (3 Libros)</span>
@@ -353,18 +371,24 @@
           </ul>
         </details>
       </article>
-
-      <!-- Isaac Asimov -->
+	  
+	  <!-- Isaac Asimov -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/propiosdioses.jpg" alt="Portada Propios dioses" class="book-cover">
+          <img src="imagenes/portadas/propiosdioses.jpg" alt="Portada Isaac Asimov" class="book-cover">
           <span class="card-author">Isaac Asimov</span>
-          <h2 class="card-title">Los propios dioses</h2>
-          <span class="badge">Ciencia Ficción</span>
+          <h2 class="card-title">Ciencia Ficción y Clásicos</h2>
+          <span class="badge">Selección de Títulos (5 Libros)</span>
         </div>
         <details class="card-details">
-          <summary>Ver detalles</summary>
-          <p>Novela ganadora de los premios Hugo, Nebula y Locus.</p>
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Trilogía de la Fundación (Libros 1-3)</li>
+            <li>Los propios dioses</li>
+            <li>Los robots del amanecer</li>
+            <li>El hombre bicentenario</li>
+            <li>La última pregunta</li>
+          </ul>
         </details>
       </article>
 
@@ -392,7 +416,7 @@
 		 <img src="imagenes/portadas/harrypotter.jpg" alt="Portada Harry Potter" class="book-cover">
           <span class="card-author">J. K. Rowling</span>
           <h2 class="card-title">Harry Potter</h2>
-          <span class="badge">Saga Completa (7 Libros)</span>
+          <span class="badge">Saga Completa (8 Libros)</span>
         </div>
         <details class="card-details">
           <summary>Ver lista de libros</summary>
@@ -531,7 +555,7 @@
       <!-- Mario Vargas Llosa -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/kkosaperros.jpg" alt="Portada Llosa" class="book-cover">
+		 <img src="imagenes/portadas/kkosaperros.jpg" alt="Portada La ciudad y los perros" class="book-cover">
           <span class="card-author">Mario Vargas Llosa</span>
           <h2 class="card-title">La ciudad y los perros</h2>
           <span class="badge">Novela Independiente</span>
@@ -618,7 +642,7 @@
       <!-- Patrick Ness -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/nessmoustruo.jpg" alt="Portada Un moustruo viene a verme" class="book-cover">
+		 <img src="imagenes/portadas/nessmoustruo.jpg" alt="Portada Un monstruo viene a verme" class="book-cover">
           <span class="card-author">Patrick Ness</span>
           <h2 class="card-title">Un monstruo viene a verme</h2>
           <span class="badge">Fantasía / Drama</span>
@@ -784,7 +808,7 @@
       <!-- Stephen King: Bill Hodges -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/mrmercedes.jpg" alt="Portada El resplandor" class="book-cover">
+		 <img src="imagenes/portadas/mrmercedes.jpg" alt="Portada Mr. Mercedes" class="book-cover">
           <span class="card-author">Stephen King</span>
           <h2 class="card-title">Trilogía Bill Hodges</h2>
           <span class="badge">Trilogía Policial (3 Libros)</span>
@@ -1017,7 +1041,7 @@
   
 	<!-- BANNER FLOTANTE (SEMÁNTICO) -->
 	<aside id="promoBanner" class="floating-banner" aria-label="Anuncio promocional">
-		<a href="https://wa.me/+5215586732808?text=Hola,%20me%20interesa%20obtener%20un%20audiolibro" target="_blank" rel="noopener noreferrer" class="floating-banner-btn">Quiero un libro</a>
+		<a href="https://wa.me/5215586732808?text=Hola,%20me%20interesa%20obtener%20un%20audiolibro" target="_blank" rel="noopener noreferrer" class="floating-banner-btn">Quiero un libro</a>
 	</aside>
 
   <footer>
