@@ -26,6 +26,8 @@ body {
 }
 
 header {
+  width: 100%;                  /* Ocupa todo el ancho de la pantalla */
+  box-sizing: border-box;       /* Evita que el padding genere scroll horizontal */
   background-color: var(--primary);
   padding: 12px 24px;
   display: grid;
@@ -37,10 +39,13 @@ header {
 }
 
 .main-title-logo {
-  max-height: 35px;
+  max-height: 45px;
   width: auto;
   object-fit: contain;
-  justify-self: start; /* Alinea el logo totalmente a la izquierda */
+  display: block; /* Elimina el espacio baseline de imágenes */
+  margin: 0; /* Asegura que no tenga márgenes aplicados */
+  /* Ajuste visual para compensar el resplandor de la sombra */
+  transform: translateY(-2px); 
   filter: drop-shadow(5px 5px 10px rgba(3, 44, 87, 1));
 }
 
@@ -75,6 +80,30 @@ header h1 {
 .search-input:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+.header-right-group {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre los iconos, el botón y el reloj */
+}
+
+/* Agrega esto para garantizar que el contenedor de redes sociales esté alineado */
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-icon img {
+  display: block;
+  max-height: 28px; /* O el tamaño de tus iconos */
+  width: auto;
+}
+
+.social-icon img:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Efecto sutil al pasar el cursor */
 }
 
 main {
@@ -222,12 +251,6 @@ footer {
   color: rgba(0, 0, 0, 0.4);
 }
 
-footer span {
-  color: #000000;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-}
-
 .fb-link {
   color: var(--accent);
   font-weight: bold;
@@ -238,7 +261,7 @@ footer span {
 .fb-link:hover,
 .fb-link:focus {
   color: var(--primary);
-}	
+}
 
 /* --- Banner Flotante y Pestaña --- */
 .floating-banner {
@@ -257,7 +280,7 @@ footer span {
     flex-direction: column;
     gap: 10px;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}	
+}
 
 .floating-banner-btn {
     display: block;
@@ -311,38 +334,16 @@ footer span {
   background-color: #1d4ed8;
 }
 
-/* Contenedor del reproductor de audiolibro */
-.audio-player-container {
-  margin: 10px 0 14px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-/* Etiqueta indicadora arriba del reproductor */
-.audio-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-/* Ajuste del reproductor nativo HTML5 */
-.audio-preview {
-  width: 100%;
-  height: 36px;
-  border-radius: 6px;
-  outline: none;
-}
-
-/* Contenedor principal del avance */
+/* Contenedor principal del avance de audio (versión final, consolidada) */
 .sample-audio-container {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin: 12px 0;
+  margin: 0;
+  padding: 0;
 }
 
-/* Botón estilo Storytel */
+/* Botón estilo Storytel (versión final, consolidada) */
 .sample-btn {
   background: transparent;
   border: none;
@@ -350,11 +351,11 @@ footer span {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
+  gap: 4px;
+  padding: 2px 6px;
   color: #101010;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
@@ -375,26 +376,10 @@ footer span {
 
 /* Fuerza la alineación horizontal en el primer elemento */
 .book-item-with-audio {
-  display: flex !important;
-  align-items: center !important;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
-}
-
-/* Evita que el contenedor de audio ocupe un bloque completo */
-.sample-audio-container {
-  display: inline-flex !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Ajuste del botón para alinearlo con el texto */
-.sample-btn {
-  display: inline-flex !important;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 6px !important;
-  font-size: 0.85rem !important;
 }
 
 /* Contenedor e imagen de portada unificada */
