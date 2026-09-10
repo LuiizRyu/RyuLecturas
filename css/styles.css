@@ -152,6 +152,48 @@ header h1 {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
 
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-input-wrapper .search-input {
+  padding-right: 40px;
+}
+
+.clear-search-btn {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.clear-search-btn:hover {
+  background-color: var(--accent-light);
+  color: var(--accent);
+}
+
+.results-count {
+  color: #ffffff;
+  font-size: 0.8rem;
+  margin-top: 6px;
+  text-align: center;
+  opacity: 0.85;
+}
+
 .header-right-group {
     display: flex;
     align-items: center;
