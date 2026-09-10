@@ -7,14 +7,14 @@
   	<!-- Configuración de Vista Previa para Redes Sociales (Open Graph) -->
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="Ryu Audiolibros">
-	<meta property="og:description" content="Los mejores titulos para escuchar">
+	<meta property="og:description" content="Escucha tus Audiolibros Favoritos">
 
 	<!-- La imagen DEBE ser una URL absoluta (completa con https://) -->
-	<meta property="og:image" content="https://luiizryu.github.io/RyuLecturas/imagenes/imagenredoscial.jpg">
+	<meta property="og:image" content="https://ryuaudiolibros.netlify.app/imagenes/imagenredoscial.jpg">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
 	
-  <title>Catálogo de Audio-Libros</title>
+  <title>Catálogo de AudioLibros</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" type="image/png" href="imagenes/iconryu.png">
 </head>
@@ -45,7 +45,11 @@
 
   <!-- Buscador -->
   <div class="search-container">
-    <input type="text" id="searchInput" class="search-input" placeholder="Buscar autor, saga o libro..." onkeyup="filterBooks()">
+    <div class="search-input-wrapper">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar autor, saga o libro..." onkeyup="filterBooks()">
+      <button type="button" id="clearSearchBtn" class="clear-search-btn" onclick="clearSearch()" aria-label="Limpiar búsqueda" style="display: none;">&times;</button>
+    </div>
+    <div id="resultsCount" class="results-count" aria-live="polite"></div>
   </div>
 </header>
 
@@ -55,21 +59,38 @@
       <!-- Agatha Christie -->
       <article class="card">
         <div>
-		  <img src="imagenes/portadas/cornishmistery.jpg" alt="Portada El misterio de Cornish" class="book-cover">
+		  <img src="imagenes/portadas/cornishmistery.jpg" alt="Portada El misterio de Cornish" loading="lazy" class="book-cover">
           <span class="card-author">Agatha Christie</span>
-          <h2 class="card-title">El misterio de Cornish</h2>
-          <span class="badge">Novela Independiente</span>
+          <h2 class="card-title">Novelas de Misterio</h2>
+          <span class="badge">Selección de Títulos (2 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+		  <ul>
+            <li>El misterio de Cornish</li>
+            <li>El misterioso caso de Styles</li>
+          </ul>
+        </details>
+      </article>
+	  
+	  <!-- Agustina Bazterrica: Cadáver Exquisito -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/cadaver_exquisito.gif" alt="Portada Cadáver exquisito" loading="lazy" class="book-cover">
+          <span class="card-author">Agustina Bazterrica</span>
+          <h2 class="card-title">Cadáver Exquisito</h2>
+          <span class="badge">Novela Dystópica / Terror</span>
         </div>
         <details class="card-details">
           <summary>Ver detalles</summary>
-          <p>Misterio y novela policiaca clásica.</p>
+          <p>Novela distópica visceral sobre la deshumanización y el consumo llevado al límite.</p>
         </details>
       </article>
 	  
 	  <!-- Antoine de Saint-Exupéry -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/elprincipito.jpg" alt="Portada El principito" class="book-cover">
+          <img src="imagenes/portadas/elprincipito.jpg" alt="Portada El principito" loading="lazy" class="book-cover">
           <span class="card-author">Antoine de Saint-Exupéry</span>
           <h2 class="card-title">El principito</h2>
           <span class="badge">Clásico / Infantil</span>
@@ -83,7 +104,7 @@
       <!-- Arturo Del Burgo -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/arturodelburgo.jpg" alt="Portada Obras Arturo Del Burgo" class="book-cover">
+          <img src="imagenes/portadas/arturodelburgo.jpg" alt="Portada Obras Arturo Del Burgo" loading="lazy" class="book-cover">
           <span class="card-author">Arturo Del Burgo</span>
           <h2 class="card-title">Novelas de Suspenso e Historia</h2>
           <span class="badge">Selección de Títulos (3 Libros)</span>
@@ -101,7 +122,7 @@
       <!-- Bram Stoker -->
       <article class="card">
         <div>
-		  <img src="imagenes/portadas/draculabs.jpg" alt="Portada Dracula" class="book-cover">
+		  <img src="imagenes/portadas/draculabs.jpg" alt="Portada Dracula" loading="lazy" class="book-cover">
           <span class="card-author">Bram Stoker</span>
           <h2 class="card-title">Drácula</h2>
           <span class="badge">Novela Independiente</span>
@@ -115,7 +136,7 @@
       <!-- C. S. Lewis -->
       <article class="card">
         <div>
-		  <img src="imagenes/portadas/cnarnia.jpg" alt="Portada Las crónicas de Narnia" class="book-cover">
+		  <img src="imagenes/portadas/cnarnia.jpg" alt="Portada Las crónicas de Narnia" loading="lazy" class="book-cover">
           <span class="card-author">C. S. Lewis</span>
           <h2 class="card-title">Las crónicas de Narnia</h2>
           <span class="badge">Saga Fantástica (7 Libros)</span>
@@ -126,7 +147,7 @@
 		  	<li class="book-item-with-audio">
 				<span>El sobrino del mago</span>
 				<div class="sample-audio-container">
-				  <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+				  <button type="button" class="sample-btn" onclick="toggleAudio(this)" aria-pressed="false" aria-label="Reproducir avance">
 					<svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 					  <path d="M8 5v14l11-7z"/>
 					</svg>
@@ -150,7 +171,7 @@
       <!-- Carlos Ruiz Zafón -->
       <article class="card">
         <div>
-		  <img src="imagenes/portadas/safonshadow.jpg" alt="Portada El Cementerio de los Libros Olvidados" class="book-cover">
+		  <img src="imagenes/portadas/safonshadow.jpg" alt="Portada El Cementerio de los Libros Olvidados" loading="lazy" class="book-cover">
           <span class="card-author">Carlos Ruiz Zafón</span>
           <h2 class="card-title">El Cementerio de los Libros Olvidados</h2>
           <span class="badge">Tetralogía (4 Libros)</span>
@@ -165,11 +186,30 @@
           </ul>
         </details>
       </article>
+	  
+      <!-- Dan Brown: Serie Robert Langdon -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/el_codigo_da_vinci.jpg" alt="Portada Dan Brown" loading="lazy" class="book-cover">
+          <span class="card-author">Dan Brown</span>
+          <h2 class="card-title">Saga Codigo Da Vinci</h2>
+          <span class="badge">Selección de Títulos (4 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Ángeles y demonios</li>
+            <li>El código Da Vinci</li>
+            <li>El símbolo perdido</li>
+            <li>Inferno</li>
+          </ul>
+        </details>
+      </article>
 
       <!-- Dante Alighieri -->
       <article class="card">
         <div>
-		  <img src="imagenes/portadas/divinacomedia.jpg" alt="Portada Divina comedia" class="book-cover">
+		  <img src="imagenes/portadas/divinacomedia.jpg" alt="Portada Divina comedia" loading="lazy" class="book-cover">
           <span class="card-author">Dante Alighieri</span>
           <h2 class="card-title">Divina comedia</h2>
           <span class="badge">Obra Clásica</span>
@@ -183,7 +223,7 @@
       <!-- Edgar Allan Poe -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/edgarallanpoe.jpg" alt="Portada Relatos Edgar Allan Poe" class="book-cover">
+          <img src="imagenes/portadas/edgarallanpoe.jpg" alt="Portada Relatos Edgar Allan Poe" loading="lazy" class="book-cover">
           <span class="card-author">Edgar Allan Poe</span>
           <h2 class="card-title">Cuentos de Terror y Thriller</h2>
           <span class="badge">Relatos Clásicos (2 Libros)</span>
@@ -200,7 +240,7 @@
       <!-- Elle Kennedy -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/kissme.jpg" alt="Portada Kissme" class="book-cover">
+		 <img src="imagenes/portadas/kissme.jpg" alt="Portada Kissme" loading="lazy" class="book-cover">
           <span class="card-author">Elle Kennedy</span>
           <h2 class="card-title">Saga Kiss Me (Off-Campus)</h2>
           <span class="badge">Saga Romántica (5 Libros)</span>
@@ -211,7 +251,7 @@
 			<li class="book-item-with-audio">
 				<span>Prohibido enamorarse (The Deal)</span>
 				<div class="sample-audio-container">
-				  <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+				  <button type="button" class="sample-btn" onclick="toggleAudio(this)" aria-pressed="false" aria-label="Reproducir avance">
 					<svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 					  <path d="M8 5v14l11-7z"/>
 					</svg>
@@ -233,7 +273,7 @@
       <!-- Emily Brontë -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/cumbresborrascosas.jpeg" alt="Portada Cumbres borrascosas" class="book-cover">
+          <img src="imagenes/portadas/cumbresborrascosas.jpeg" alt="Portada Cumbres borrascosas" loading="lazy" class="book-cover">
           <span class="card-author">Emily Brontë</span>
           <h2 class="card-title">Cumbres borrascosas</h2>
           <span class="badge">Clásico / Drama</span>
@@ -244,38 +284,67 @@
         </details>
       </article>
 
-      <!-- Fiódor Dostoyevski -->
+	  
+	  <!-- Fiódor Dostoyevski -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/hermanoskaramazov.jpg" alt="Portada Los hermanos Karamázov" class="book-cover">
+          <img src="imagenes/portadas/hermanoskaramazov.jpg" alt="Portada Fiódor Dostoyevski" loading="lazy" class="book-cover">
           <span class="card-author">Fiódor Dostoyevski</span>
-          <h2 class="card-title">Los hermanos Karamázov</h2>
-          <span class="badge">Novela Clásica</span>
+          <h2 class="card-title">Clásicos de Dostoyevski</h2>
+          <span class="badge">Selección de Títulos (3 Libros)</span>
         </div>
         <details class="card-details">
-          <summary>Ver detalles</summary>
-          <p>Obra cumbre sobre debates éticos, Dios, la libre elección y la moralidad.</p>
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>El idiota</li>
+            <li>Los hermanos Karamázov</li>
+            <li>Noches blancas</li>
+          </ul>
         </details>
       </article>
 	  
-      <!-- Freida McFadden -->
+      <!-- Freida McFadden: Saga La Asistenta -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/thehousemaid.jpg" alt="Portada The Housemaid" class="book-cover">
+          <img src="imagenes/portadas/thehousemaid.jpg" alt="Portada Saga La Asistenta" loading="lazy" class="book-cover">
           <span class="card-author">Freida McFadden</span>
-          <h2 class="card-title">The Housemaid (La empleada)</h2>
-          <span class="badge">Thriller / Suspenso</span>
+          <h2 class="card-title">Saga La Asistenta</h2>
+          <span class="badge">Saga Principal (4 Libros)</span>
         </div>
         <details class="card-details">
-          <summary>Ver detalles</summary>
-          <p>Un thriller psicológico sobre secretos oscuros en una familia aparentemente perfecta.</p>
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>La asistenta</li>
+            <li>El secreto de la asistenta</li>
+            <li>La asistenta te vigila</li>
+            <li>La boda de la asistenta</li>
+          </ul>
         </details>
       </article>
+	  
+      <!-- Freida McFadden: Novelas Independientes -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/freida_mcfadden_novelas.jpg" alt="Portada Freida McFadden" loading="lazy" class="book-cover">
+          <span class="card-author">Freida McFadden</span>
+          <h2 class="card-title">Thrillers Psicológicos</h2>
+          <span class="badge">Selección de Títulos (3 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>La profesora</li>
+            <li>Nunca mientas</li>
+		    <li>The Tenant (La inquilina)</li>
+          </ul>
+        </details>
+      </article>
+
 
       <!-- Gabriel García Márquez -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/ciensoledad.jpg" alt="Portada Cien años de soledad" class="book-cover">
+		 <img src="imagenes/portadas/ciensoledad.jpg" alt="Portada Cien años de soledad" loading="lazy" class="book-cover">
           <span class="card-author">Gabriel García Márquez</span>
           <h2 class="card-title">Obras Seleccionadas</h2>
           <span class="badge">Realismo Mágico (3 Libros)</span>
@@ -293,7 +362,7 @@
       <!-- George R. R. Martin -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/tronos.jpg" alt="Portada Juego de tronos" class="book-cover">
+		 <img src="imagenes/portadas/tronos.jpg" alt="Portada Juego de tronos" loading="lazy" class="book-cover">
           <span class="card-author">George R. R. Martin</span>
           <h2 class="card-title">Canción de hielo y fuego</h2>
           <span class="badge">Saga Fantástica (5 Libros)</span>
@@ -304,7 +373,7 @@
 		  	<li class="book-item-with-audio">
 				<span>Juego de tronos</span>
 				<div class="sample-audio-container">
-				  <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+				  <button type="button" class="sample-btn" onclick="toggleAudio(this)" aria-pressed="false" aria-label="Reproducir avance">
 					<svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 					  <path d="M8 5v14l11-7z"/>
 					</svg>
@@ -326,7 +395,7 @@
       <!-- H. G. Wells -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/wellsguerramundos.jpg" alt="Portada La guerra de los mundos" class="book-cover">
+		 <img src="imagenes/portadas/wellsguerramundos.jpg" alt="Portada La guerra de los mundos" loading="lazy" class="book-cover">
           <span class="card-author">H. G. Wells</span>
           <h2 class="card-title">Obras de Ciencia Ficción</h2>
           <span class="badge">Clásicos Ciencia Ficción (2 Libros)</span>
@@ -343,7 +412,7 @@
       <!-- H. P. Lovecraft -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/lovecraft.jpg" alt="Portada H. P. Lovecraft" class="book-cover">
+          <img src="imagenes/portadas/lovecraft.jpg" alt="Portada H. P. Lovecraft" loading="lazy" class="book-cover">
           <span class="card-author">H. P. Lovecraft</span>
           <h2 class="card-title">Mitos de Cthulhu y Relatos</h2>
           <span class="badge">Terror Cósmico (4 Libros)</span>
@@ -361,7 +430,7 @@
       <!-- Horacio Quiroga -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/horacioquiroga.jpg" alt="Portada Horacio Quiroga" class="book-cover">
+          <img src="imagenes/portadas/horacioquiroga.jpg" alt="Portada Horacio Quiroga" loading="lazy" class="book-cover">
           <span class="card-author">Horacio Quiroga</span>
           <h2 class="card-title">Cuentos de Terror y Misterio</h2>
           <span class="badge">Relatos Breves (2 Libros)</span>
@@ -378,7 +447,7 @@
 	  <!-- Isaac Asimov -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/propiosdioses.jpg" alt="Portada Isaac Asimov" class="book-cover">
+          <img src="imagenes/portadas/propiosdioses.jpg" alt="Portada Isaac Asimov" loading="lazy" class="book-cover">
           <span class="card-author">Isaac Asimov</span>
           <h2 class="card-title">Ciencia Ficción y Clásicos</h2>
           <span class="badge">Selección de Títulos (5 Libros)</span>
@@ -398,16 +467,17 @@
       <!-- Isabel Allende -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/amorysombra.jpg" alt="Portada De amor y sombra" class="book-cover">
+		 <img src="imagenes/portadas/amorysombra.jpg" alt="Portada De amor y sombra" loading="lazy" class="book-cover">
           <span class="card-author">Isabel Allende</span>
           <h2 class="card-title">Obras Seleccionadas</h2>
-          <span class="badge">Narrativa (3 Libros)</span>
+          <span class="badge">Narrativa (4 Libros)</span>
         </div>
         <details class="card-details">
           <summary>Ver lista de libros</summary>
           <ul>
             <li>De amor y de sombra</li>
             <li>La suma de los días</li>
+			<li>Mi nombre es Emilia del Valle</li>
             <li>Largo pétalo de mar</li>
           </ul>
         </details>
@@ -416,7 +486,7 @@
       <!-- J. K. Rowling -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/harrypotter.jpg" alt="Portada Harry Potter" class="book-cover">
+		 <img src="imagenes/portadas/harrypotter.jpg" alt="Portada Harry Potter" loading="lazy" class="book-cover">
           <span class="card-author">J. K. Rowling</span>
           <h2 class="card-title">Harry Potter</h2>
           <span class="badge">Saga Completa (8 Libros)</span>
@@ -427,7 +497,7 @@
 			<li class="book-item-with-audio">
 				<span>Harry Potter y la piedra filosofal</span>
 				<div class="sample-audio-container">
-				  <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+				  <button type="button" class="sample-btn" onclick="toggleAudio(this)" aria-pressed="false" aria-label="Reproducir avance">
 					<svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 					  <path d="M8 5v14l11-7z"/>
 					</svg>
@@ -452,7 +522,7 @@
       <!-- J. R. R. Tolkien -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/senioranillos.jpg" alt="Portada El señor de los anillos" class="book-cover">
+		 <img src="imagenes/portadas/senioranillos.jpg" alt="Portada El señor de los anillos" loading="lazy" class="book-cover">
           <span class="card-author">J. R. R. Tolkien</span>
           <h2 class="card-title">Fantasía Épica</h2>
           <span class="badge">Obras Fundamentales (2 Libros)</span>
@@ -469,7 +539,7 @@
       <!-- Jojo Moyes -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/sigosiendoyo.jpg" alt="Portada Jojo Moyes" class="book-cover">
+		 <img src="imagenes/portadas/sigosiendoyo.jpg" alt="Portada Jojo Moyes" loading="lazy" class="book-cover">
           <span class="card-author">Jojo Moyes</span>
           <h2 class="card-title">Sigo siendo yo</h2>
           <span class="badge">Novela Romántica</span>
@@ -480,24 +550,27 @@
         </details>
       </article>
 
-      <!-- Julio Cortázar -->
+<!-- Julio Cortázar -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/cronopios.jpg" alt="Portada Julio Cortazar" class="book-cover">
+          <img src="imagenes/portadas/cronopios.jpg" alt="Portada Julio Cortázar" loading="lazy" class="book-cover">
           <span class="card-author">Julio Cortázar</span>
-          <h2 class="card-title">Historias de cronopios y de famas</h2>
-          <span class="badge">Antología de Relatos</span>
+          <h2 class="card-title">Obras de Julio Cortázar</h2>
+          <span class="badge">Selección de Títulos (2 Libros)</span>
         </div>
         <details class="card-details">
-          <summary>Ver detalles</summary>
-          <p>Cuentos breves y surrealistas.</p>
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Historias de cronopios y de famas</li>
+            <li>Rayuela</li>
+          </ul>
         </details>
       </article>
 
       <!-- Julio Verne -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/verne.jpg" alt="Portada Verne" class="book-cover">
+		 <img src="imagenes/portadas/verne.jpg" alt="Portada Verne" loading="lazy" class="book-cover">
           <span class="card-author">Julio Verne</span>
           <h2 class="card-title">Obras Destacadas</h2>
           <span class="badge">Aventura y Ciencia Ficción (5 Libros)</span>
@@ -508,7 +581,7 @@
 			<li class="book-item-with-audio">
 				<span>De la Tierra a la Luna</span>
 				<div class="sample-audio-container">
-				  <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+				  <button type="button" class="sample-btn" onclick="toggleAudio(this)" aria-pressed="false" aria-label="Reproducir avance">
 					<svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 					  <path d="M8 5v14l11-7z"/>
 					</svg>
@@ -530,21 +603,24 @@
       <!-- Kathryn Stockett -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/thehelp.jpg" alt="Portada The Help" class="book-cover">
+		 <img src="imagenes/portadas/thehelp.jpg" alt="Portada The Help" loading="lazy" class="book-cover">
           <span class="card-author">Kathryn Stockett</span>
-          <h2 class="card-title">Criadas y señoras</h2>
-          <span class="badge">Ficción Histórica</span>
+          <h2 class="card-title">Obras Destacadas</h2>
+          <span class="badge">Ficción Histórica (2 Libros)</span>
         </div>
         <details class="card-details">
-          <summary>Ver detalles</summary>
-          <p>Novela sobre el racismo en Misisipi en los años 60.</p>
+          <summary>Ver lista de libros</summary>
+		  <ul>
+			<li>Criadas y señoras</li>
+			<li>El club de las indomables</li>
+		  </ul>
         </details>
       </article>
 	  
       <!-- Leonora Carrington -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/leonoracarrington.jpg" alt="Portada Cuentos completos Leonora Carrington" class="book-cover">
+          <img src="imagenes/portadas/leonoracarrington.jpg" alt="Portada Cuentos completos Leonora Carrington" loading="lazy" class="book-cover">
           <span class="card-author">Leonora Carrington</span>
           <h2 class="card-title">Cuentos completos</h2>
           <span class="badge">Fantasía Surrealista</span>
@@ -558,7 +634,7 @@
       <!-- Mario Vargas Llosa -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/kkosaperros.jpg" alt="Portada La ciudad y los perros" class="book-cover">
+		 <img src="imagenes/portadas/kkosaperros.jpg" alt="Portada La ciudad y los perros" loading="lazy" class="book-cover">
           <span class="card-author">Mario Vargas Llosa</span>
           <h2 class="card-title">La ciudad y los perros</h2>
           <span class="badge">Novela Independiente</span>
@@ -572,7 +648,7 @@
       <!-- Mary Shelley -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/frankenstaein.jpg" alt="Portada Frankenstein" class="book-cover">
+		 <img src="imagenes/portadas/frankenstaein.jpg" alt="Portada Frankenstein" loading="lazy" class="book-cover">
           <span class="card-author">Mary Shelley</span>
           <h2 class="card-title">Frankenstein</h2>
           <span class="badge">Clásico de Terror</span>
@@ -586,7 +662,7 @@
 	  <!-- Michael Crichton -->
 		<article class="card">
 		  <div>
-			<img src="imagenes/portadas/jurassicpark.jpg" alt="Portada Parque Jurásico" class="book-cover">
+			<img src="imagenes/portadas/jurassicpark.jpg" alt="Portada Parque Jurásico" loading="lazy" class="book-cover">
 			<span class="card-author">Michael Crichton</span>
 			<h2 class="card-title">Parque Jurásico y otras obras</h2>
 			<span class="badge">Ciencia Ficción / Thriller (3 Libros)</span>
@@ -597,7 +673,7 @@
 			<li class="book-item-with-audio">
 				<span>Parque Jurásico</span>
 				<div class="sample-audio-container">
-				  <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+				  <button type="button" class="sample-btn" onclick="toggleAudio(this)" aria-pressed="false" aria-label="Reproducir avance">
 					<svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 					  <path d="M8 5v14l11-7z"/>
 					</svg>
@@ -614,38 +690,47 @@
 		  </details>
 		</article>
 
-      <!-- Neil Gaiman -->
+      <!-- Neil Gaiman: Obras Destacadas -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/cementeriogaiman.jpg" alt="Portada El libro del cementerio" class="book-cover">
+          <img src="imagenes/portadas/coraline.jpg" alt="Portada Neil Gaiman" loading="lazy" class="book-cover">
           <span class="card-author">Neil Gaiman</span>
-          <h2 class="card-title">El libro del cementerio</h2>
-          <span class="badge">Fantasía Juvenil</span>
+          <h2 class="card-title">Fantasía y Mitología</h2>
+          <span class="badge">Selección de Títulos (5 Libros)</span>
         </div>
         <details class="card-details">
-          <summary>Ver detalles</summary>
-          <p>Novela de aprendizaje en un entorno macabro y fantástico.</p>
+          <summary>Ver lista de libros</summary>
+          <ul>
+		    <li>Coraline</li>
+            <li>American Gods</li>
+            <li>El libro del cementerio</li>
+            <li>The Sandman</li>
+            <li>Stardust</li>
+          </ul>
         </details>
       </article>
 	  
-      <!-- Oscar Wilde -->
+	  <!-- Oscar Wilde -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/doriangray.jpg" alt="Portada El retrato de Dorian Gray" class="book-cover">
+          <img src="imagenes/portadas/doriangray.jpg" alt="Portada Oscar Wilde" loading="lazy" class="book-cover">
           <span class="card-author">Oscar Wilde</span>
-          <h2 class="card-title">El retrato de Dorian Gray</h2>
-          <span class="badge">Clásico / Novela Filosófica</span>
+          <h2 class="card-title">Obras de Oscar Wilde</h2>
+          <span class="badge">Selección de Títulos (2 Libros)</span>
         </div>
         <details class="card-details">
-          <summary>Ver detalles</summary>
-          <p>Un joven vende su alma para mantener la juventud eterna mientras su retrato envejece.</p>
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>El fantasma de Canterville</li>
+            <li>El retrato de Dorian Gray</li>
+          </ul>
         </details>
       </article>
 
       <!-- Patrick Ness -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/nessmoustruo.jpg" alt="Portada Un monstruo viene a verme" class="book-cover">
+		 <img src="imagenes/portadas/nessmoustruo.jpg" alt="Portada Un monstruo viene a verme" loading="lazy" class="book-cover">
           <span class="card-author">Patrick Ness</span>
           <h2 class="card-title">Un monstruo viene a verme</h2>
           <span class="badge">Fantasía / Drama</span>
@@ -659,7 +744,7 @@
       <!-- Patrick Süskind -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/elperfume.jpg" alt="Portada El perfume" class="book-cover">
+		 <img src="imagenes/portadas/elperfume.jpg" alt="Portada El perfume" loading="lazy" class="book-cover">
           <span class="card-author">Patrick Süskind</span>
           <h2 class="card-title">El perfume</h2>
           <span class="badge">Novela Histórica / Suspenso</span>
@@ -673,7 +758,7 @@
       <!-- Paz Castelló -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/muertenueve.jpg" alt="Portada La muerte del 9" class="book-cover">
+		 <img src="imagenes/portadas/muertenueve.jpg" alt="Portada La muerte del 9" loading="lazy" class="book-cover">
           <span class="card-author">Paz Castelló</span>
           <h2 class="card-title">La muerte del 9</h2>
           <span class="badge">Thriller / Intriga</span>
@@ -687,7 +772,7 @@
       <!-- Philip Pullman -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/pullman.jpg" alt="Portada La brújula dorada" class="book-cover">
+		 <img src="imagenes/portadas/pullman.jpg" alt="Portada La brújula dorada" loading="lazy" class="book-cover">
           <span class="card-author">Philip Pullman</span>
           <h2 class="card-title">La materia oscura</h2>
           <span class="badge">Saga Fantástica (2 Libros)</span>
@@ -700,11 +785,29 @@
           </ul>
         </details>
       </article>
+	  
+	  <!-- Rebecca Yarros: Saga Empíreo -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/empireo_rebecca_yarros.png" alt="Portada Saga Empíreo" loading="lazy" class="book-cover">
+          <span class="card-author">Rebecca Yarros</span>
+          <h2 class="card-title">Saga Empíreo</h2>
+          <span class="badge">Saga Romantasy (3 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Alas de sangre</li>
+            <li>Alas de hierro</li>
+            <li>Alas de ónix</li>
+          </ul>
+        </details>
+      </article>
 
       <!-- Richard Matheson -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/soyleyenda.jpg" alt="Portada Soy leyenda" class="book-cover">
+		 <img src="imagenes/portadas/soyleyenda.jpg" alt="Portada Soy leyenda" loading="lazy" class="book-cover">
           <span class="card-author">Richard Matheson</span>
           <h2 class="card-title">Soy leyenda</h2>
           <span class="badge">Ciencia Ficción / Terror</span>
@@ -718,7 +821,7 @@
       <!-- Robert Fisher -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/caballeroarmadura.jpg" alt="Portada El Caballero de la Armadura Oxidada" class="book-cover">
+          <img src="imagenes/portadas/caballeroarmadura.jpg" alt="Portada El Caballero de la Armadura Oxidada" loading="lazy" class="book-cover">
           <span class="card-author">Robert Fisher</span>
           <h2 class="card-title">El Caballero de la Armadura Oxidada</h2>
           <span class="badge">Desarrollo Personal (2 Libros)</span>
@@ -735,7 +838,7 @@
       <!-- Robert Louis Stevenson -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/mrhyde.jpg" alt="Portada Dr. Jekyll y Mr. Hyde" class="book-cover">
+		 <img src="imagenes/portadas/mrhyde.jpg" alt="Portada Dr. Jekyll y Mr. Hyde" loading="lazy" class="book-cover">
           <span class="card-author">Robert Louis Stevenson</span>
           <h2 class="card-title">El extraño caso del Dr. Jekyll y Mr. Hyde</h2>
           <span class="badge">Novela Corta Clásica</span>
@@ -749,7 +852,7 @@
 	  <!-- Sarah J. Maas -->
 		<article class="card">
 		  <div>
-		   <img src="imagenes/portadas/tronocristal.jpg" alt="Portada Trono de Cristal" class="book-cover">
+		   <img src="imagenes/portadas/tronocristal.jpg" alt="Portada Trono de Cristal" loading="lazy" class="book-cover">
 			<span class="card-author">Sarah J. Maas</span>
 			<h2 class="card-title">Trono de Cristal</h2>
 			<span class="badge">Saga Fantasía (7 Libros)</span>
@@ -768,10 +871,10 @@
 		  </details>
 		</article>
 
-      <!-- Stephen King: La Torre Oscura -->
+     <!-- Stephen King: La Torre Oscura -->
       <article class="card">
         <div>
-		  <img src="imagenes/portadas/latorreoscura.jpg" alt="Portada Torre oscura" class="book-cover">
+          <img src="imagenes/portadas/latorreoscura.jpg" alt="Portada Torre oscura" loading="lazy" class="book-cover">
           <span class="card-author">Stephen King</span>
           <h2 class="card-title">La Torre Oscura</h2>
           <span class="badge">Saga Principal (8 Libros)</span>
@@ -794,7 +897,7 @@
       <!-- Stephen King: El Resplandor -->
       <article class="card">
         <div>
-		  <img src="imagenes/portadas/elresplandor.jpeg" alt="Portada El resplandor" class="book-cover">
+          <img src="imagenes/portadas/elresplandor.jpeg" alt="Portada El resplandor" loading="lazy" class="book-cover">
           <span class="card-author">Stephen King</span>
           <h2 class="card-title">Saga El Resplandor</h2>
           <span class="badge">Duología (2 Libros)</span>
@@ -808,13 +911,13 @@
         </details>
       </article>
 
-      <!-- Stephen King: Bill Hodges -->
+      <!-- Stephen King: Bill Hodges & Holly -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/mrmercedes.jpg" alt="Portada Mr. Mercedes" class="book-cover">
+          <img src="imagenes/portadas/mrmercedes.jpg" alt="Portada Mr. Mercedes" loading="lazy" class="book-cover">
           <span class="card-author">Stephen King</span>
-          <h2 class="card-title">Trilogía Bill Hodges</h2>
-          <span class="badge">Trilogía Policial (3 Libros)</span>
+          <h2 class="card-title">Trilogía Bill Hodges & Holly</h2>
+          <span class="badge">Serie Policial (4 Libros)</span>
         </div>
         <details class="card-details">
           <summary>Ver lista de libros</summary>
@@ -822,6 +925,7 @@
             <li>Mr. Mercedes</li>
             <li>Quien pierde paga</li>
             <li>Fin de guardia</li>
+            <li>Holly</li>
           </ul>
         </details>
       </article>
@@ -829,7 +933,7 @@
       <!-- Stephen King: Las Cuatro Estaciones -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/ritawayworth.jpg" alt="Portada ritawayworth" class="book-cover">
+          <img src="imagenes/portadas/ritawayworth.jpg" alt="Portada Rita Hayworth" loading="lazy" class="book-cover">
           <span class="card-author">Stephen King</span>
           <h2 class="card-title">Las Cuatro Estaciones</h2>
           <span class="badge">Novelas Cortas (4 Libros)</span>
@@ -845,13 +949,13 @@
         </details>
       </article>
 
-<!-- Stephen King: Terror y Sobrenatural -->
+<!-- Stephen King: Terror Clásico y Criaturas -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/ItEso.jpg" alt="Portada Terror Stephen King" class="book-cover">
+          <img src="imagenes/portadas/ItEso.jpg" alt="Portada Terror Clásico Stephen King" loading="lazy" class="book-cover">
           <span class="card-author">Stephen King</span>
-          <h2 class="card-title">Terror y Sobrenatural</h2>
-          <span class="badge">Selección de Títulos (4 Libros)</span>
+          <h2 class="card-title">Terror Clásico y Criaturas</h2>
+          <span class="badge">Selección de Títulos (7 Libros)</span>
         </div>
         <details class="card-details">
           <summary>Ver lista de libros</summary>
@@ -859,7 +963,7 @@
             <li class="book-item-with-audio">
               <span>It (Eso)</span>
               <div class="sample-audio-container">
-                <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+                <button type="button" class="sample-btn" onclick="toggleAudio(this)" aria-pressed="false" aria-label="Reproducir avance">
                   <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
@@ -871,64 +975,187 @@
               </div>
             </li>
             <li>Carrie</li>
-            <li>El misterio del gusano</li>
-            <li>El visitante</li>
+            <li>Cementerio de animales</li>
+            <li>Christine</li>
+            <li>Cujo</li>
+            <li>El misterio de Salem's Lot</li>
+            <li>La tienda</li>
           </ul>
         </details>
       </article>
 
-      <!-- Stephen King: Suspenso y Thriller Psicológico -->
+      <!-- Stephen King: Terror Apocalíptico y Paranormal -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/misery.jpg" alt="Portada Suspenso Stephen King" class="book-cover">
+          <img src="imagenes/portadas/apocalipsis.jpeg" alt="Portada Terror Paranormal Stephen King" loading="lazy" class="book-cover">
           <span class="card-author">Stephen King</span>
-          <h2 class="card-title">Suspenso y Thriller Psicológico</h2>
+          <h2 class="card-title">Terror Apocalíptico y Sobrenatural</h2>
+          <span class="badge">Selección de Títulos (8 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Apocalipsis</li>
+            <li>Cell</li>
+            <li>Desesperación</li>
+            <li>El juego de Gerald</li>
+            <li>El visitante</li>
+            <li>Maleficio</li>
+            <li>Posesión</li>
+            <li>Un saco de huesos</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: Thriller de Suspenso y Crimen -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/misery.jpg" alt="Portada Thriller Stephen King" loading="lazy" class="book-cover">
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Thriller, Crimen y Suspenso</h2>
           <span class="badge">Selección de Títulos (5 Libros)</span>
         </div>
         <details class="card-details">
           <summary>Ver lista de libros</summary>
           <ul>
-            <li>Misery</li>
-            <li>La milla verde</li>
+            <li>11.22.63</li>
+            <li>Billy Summers</li>
             <li>Dolores Claiborne</li>
-            <li>La zona muerta</li>
             <li>La chica que amaba a Tom Gordon</li>
+            <li>Misery</li>
           </ul>
         </details>
       </article>
 
-      <!-- Stephen King: Fantasía y Ciencia Ficción -->
+      <!-- Stephen King: Drama Humano y Misterio Psicológico -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/elinstituto.jpg" alt="Portada Fantasía Stephen King" class="book-cover">
+          <img src="imagenes/portadas/millaverde.jpg" alt="Portada Misterio Psicológico Stephen King" loading="lazy" class="book-cover">
           <span class="card-author">Stephen King</span>
-          <h2 class="card-title">Fantasía y Ciencia Ficción</h2>
+          <h2 class="card-title">Misterio Psicológico y Drama</h2>
+          <span class="badge">Selección de Títulos (5 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Después</li>
+            <li>Duma Key</li>
+            <li>Elevación</li>
+            <li>La milla verde</li>
+            <li>La zona muerta</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: Fantasía Épica y Portales -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/talisman.jpg" alt="Portada Fantasía Épica Stephen King" loading="lazy" class="book-cover">
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Fantasía y Mundos Paralelos</h2>
           <span class="badge">Selección de Títulos (4 Libros)</span>
         </div>
         <details class="card-details">
           <summary>Ver lista de libros</summary>
           <ul>
-            <li>El instituto</li>
+            <li>El talismán</li>
+			<li>Casa Negra</li>
             <li>Cuento de hadas</li>
+            <li>Los ojos del dragón</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: Ciencia Ficción y Poderes Mentales -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/elinstituto.jpg" alt="Portada Ciencia Ficción Stephen King" loading="lazy" class="book-cover">
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Ciencia Ficción y Fenómenos</h2>
+          <span class="badge">Selección de Títulos (4 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Bellas durmientes</li>
+            <li>El instituto</li>
             <li>La historia de Lisey</li>
             <li>Revival</li>
           </ul>
         </details>
       </article>
 
-      <!-- Stephen King: Antologías de Relatos -->
+      <!-- Stephen King: Colecciones Principales de Relatos -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/elbazardelosmalossuenos.jpg" alt="Portada Antologías Stephen King" class="book-cover">
+          <img src="imagenes/portadas/elbazardelosmalossuenos.jpg" alt="Portada Antologías Principales Stephen King" loading="lazy" class="book-cover">
           <span class="card-author">Stephen King</span>
-          <h2 class="card-title">Antologías y Colecciones de Relatos</h2>
-          <span class="badge">Selección de Títulos (2 Libros)</span>
+          <h2 class="card-title">Colecciones de Relatos</h2>
+          <span class="badge">Selección de Títulos (6 Libros)</span>
         </div>
         <details class="card-details">
           <summary>Ver lista de libros</summary>
           <ul>
             <li>El bazar de los malos sueños</li>
+            <li>El último turno</li>
+            <li>Historias fantásticas</li>
+            <li>La Sangre Manda</li>
             <li>Todo es eventual</li>
+            <li>Todo oscuro, sin estrellas</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: Relatos Cortos y Colaboraciones -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/nomiedo.jpg" alt="Portada Relatos Cortos Stephen King" loading="lazy" class="book-cover">
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Relatos Cortos y Colaboraciones</h2>
+          <span class="badge">Selección de Títulos (6 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+		    <li>No Tengas Miedo</li>
+            <li>En la hierba alta</li>
+            <li>La balsa</li>
+            <li>Los misterios del gusano</li>
+            <li>Nona</li>
+            <li>Un rostro en la multitud</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: Novelas Cortas, Sagas & Bachman -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/cajabotnones.jpg" alt="Portada Novelas Cortas y Bachman" loading="lazy" class="book-cover">
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">Distopías y Sagas Cortas</h2>
+          <span class="badge">Selección de Títulos (2 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>La caja de botones de Gwendy</li>
+            <li>La larga marcha</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Stephen King: No Ficción -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/mientrasescribo.jpg" alt="Portada Mientras escribo" loading="lazy" class="book-cover">
+          <span class="card-author">Stephen King</span>
+          <h2 class="card-title">No Ficción y Ensayos</h2>
+          <span class="badge">Ensayo / Autobiografía (1 Libro)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Mientras escribo</li>
           </ul>
         </details>
       </article>
@@ -936,7 +1163,7 @@
 		<!-- Suzanne Collins -->
 		<article class="card">
 		  <div>
-		   <img src="imagenes/portadas/juegoshambre.jpg" alt="Portada Los juegos del hambre" class="book-cover">
+		   <img src="imagenes/portadas/juegoshambre.jpg" alt="Portada Los juegos del hambre" loading="lazy" class="book-cover">
 			<span class="card-author">Suzanne Collins</span>
 			<h2 class="card-title">Los juegos del hambre</h2>
 			<span class="badge">Saga Distópica (5 Libros)</span>
@@ -947,7 +1174,7 @@
 			  <li class="book-item-with-audio">
 				<span>Los juegos del hambre</span>
 				<div class="sample-audio-container">
-				  <button type="button" class="sample-btn" onclick="toggleAudio(this)">
+				  <button type="button" class="sample-btn" onclick="toggleAudio(this)" aria-pressed="false" aria-label="Reproducir avance">
 					<svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 					  <path d="M8 5v14l11-7z"/>
 					</svg>
@@ -969,7 +1196,7 @@
       <!-- Universo Stranger Things -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/strangerthings.jpg" alt="Portada Novelas Stranger Things" class="book-cover">
+          <img src="imagenes/portadas/strangerthings.jpg" alt="Portada Novelas Stranger Things" loading="lazy" class="book-cover">
           <span class="card-author">Gwenda Bond & Caitlin Schneiderhan</span>
           <h2 class="card-title">Universo Stranger Things</h2>
           <span class="badge">Ciencia Ficción / Serie (2 Libros)</span>
@@ -982,11 +1209,30 @@
           </ul>
         </details>
       </article>
+	  
+<!-- Veronica Roth: Saga Divergente -->
+      <article class="card">
+        <div>
+          <img src="imagenes/portadas/divergente.jpg" alt="Portada Saga Divergente" loading="lazy" class="book-cover">
+          <span class="card-author">Veronica Roth</span>
+          <h2 class="card-title">Saga Divergente</h2>
+          <span class="badge">Saga Completa (4 Libros)</span>
+        </div>
+        <details class="card-details">
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Divergente</li>
+            <li>Insurgente</li>
+            <li>Leal</li>
+            <li>Cuatro</li>
+          </ul>
+        </details>
+      </article>
 
       <!-- Walter Riso -->
       <article class="card">
         <div>
-          <img src="imagenes/portadas/walterriso.jpg" alt="Portada Desapegarse sin anestesia" class="book-cover">
+          <img src="imagenes/portadas/walterriso.jpg" alt="Portada Desapegarse sin anestesia" loading="lazy" class="book-cover">
           <span class="card-author">Walter Riso</span>
           <h2 class="card-title">Desapegarse sin anestesia</h2>
           <span class="badge">Autoayuda / Psicología</span>
@@ -996,25 +1242,28 @@
           <p>Guía para fortalecer la independencia emocional y superar la dependencia afectiva.</p>
         </details>
       </article>
-
-      <!-- William Shakespeare -->
+	  
+<!-- William Shakespeare -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/hamlet.jpg" alt="Portada Hamlet" class="book-cover">
+          <img src="imagenes/portadas/hamlet.jpg" alt="Portada William Shakespeare" loading="lazy" class="book-cover">
           <span class="card-author">William Shakespeare</span>
-          <h2 class="card-title">Hamlet</h2>
-          <span class="badge">Obra Teatral Clásica</span>
+          <h2 class="card-title">Tragedias Clásicas</h2>
+          <span class="badge">Selección de Títulos (2 Libros)</span>
         </div>
         <details class="card-details">
-          <summary>Ver detalles</summary>
-          <p>Tragedia clásica de la literatura universal.</p>
+          <summary>Ver lista de libros</summary>
+          <ul>
+            <li>Hamlet</li>
+            <li>Romeo y Julieta</li>
+          </ul>
         </details>
       </article>
 
       <!-- Ana Frank -->
       <article class="card">
         <div>
-		 <img src="imagenes/portadas/anafrank.webp" alt="Portada El diario de Ana Frank" class="book-cover">
+		 <img src="imagenes/portadas/anafrank.webp" alt="Portada El diario de Ana Frank" loading="lazy" class="book-cover">
           <span class="card-author">Ana Frank</span>
           <h2 class="card-title">El diario de Ana Frank</h2>
           <span class="badge">Autobiografía</span>
@@ -1037,7 +1286,7 @@
 		</article>
 
     </div>
-	<div id="noResults" class="no-results" style="display: none;">
+	<div id="noResults" class="no-results" style="display: none;" aria-live="polite">
 	<p>No se encontraron resultados para tu búsqueda.</p>
 </div>
   </main>
